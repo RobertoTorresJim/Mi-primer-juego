@@ -9,14 +9,16 @@ function love.load()
   -- This is the coordinates where the platform_00 will be rendered.
 	platform_00.x = 0                               -- This starts drawing the platform_00 at the left edge of the game window.
 	platform_00.y = platform_00.height / 2             -- This starts drawing the platform_00 at the very middle of the game window
-	--This is the height and the width of the platform_01
-
-
+	--This is the coordinates where the platform_01 will be rendered
+	platform_01.x = (love.graphics.getWidth())/2
+	platform_01.y = (love.graphics.getHeight())/3
+	-- This calls the file named "platform_01.png" and puts it in the variable called player.img.
+	platform_01.img = love.graphics.newImage('images/platform_01.png')
   -- This is the coordinates where the player character will be rendered.
-  player.x = love.graphics.getWidth() / 2   -- This sets the player at the middle of the screen based on the width of the game window.
-  player.y = love.graphics.getHeight() / 2  -- This sets the player at the middle of the screen based on the height of the game window.
-  -- This calls the file named "purple.png" and puts it in the variable called player.img.
-  player.img = love.graphics.newImage('bomba loca.png')
+  player.x = love.graphics.getWidth() / 10   -- This sets the player at the middle of the screen based on the width of the game window.
+  player.y = (love.graphics.getHeight() / 2) - 110 -- This sets the player at the middle of the screen based on the height of the game window.
+  -- This calls the file named "bomba loca.png" and puts it in the variable called player.img.
+  player.img = love.graphics.newImage('images/bomba loca.png')
   player.ground = player.y     -- This makes the character land on the plaform.
  	player.y_velocity = 0        -- Whenever the character hasn't jumped yet, the Y-Axis velocity is always at 0.
  	player.jump_height = -300    -- Whenever the character jumps, he can reach this height.
@@ -60,6 +62,8 @@ function love.draw()
 	love.graphics.setColor(255, 255, 255)        -- This sets the platform_00 color to white. (The parameters are in RGB Color format).
   -- The platform_00 will now be drawn as a white rectangle while taking in the variables we declared above.
 	love.graphics.rectangle('fill', platform_00.x, platform_00.y, platform_00.width, platform_00.height)
+	-- This draws the platform_01.
+	love.graphics.draw(platform_01.img, platform_01.x, platform_01.y, 0, 1, 1, 0, 32)
   -- This draws the player.
 	love.graphics.draw(player.img, player.x, player.y, 0, 1, 1, 0, 32)
 end
